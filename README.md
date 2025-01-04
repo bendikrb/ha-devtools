@@ -42,6 +42,8 @@ The configuration UI will guide you through adding the integration to Home Assis
 
 The `devtools.call_ws_endpoint` action enables you to call any command registered with the Home Assistant WebSocket API and retrieve its response. This can be particularly useful for debugging, testing, or automating tasks that require direct interaction with the WebSocket API.
 
+[![Try this action][try-action-shield]](https://my.home-assistant.io/redirect/developer_call_service/?service=devtools.call_ws_endpoint)
+
 #### Service Data
 
 - `type` (string) - The WebSocket API command to call.
@@ -75,3 +77,4 @@ data:
 [releases]: https://github.com/bendikrb/ha-devtools/releases
 [download-latest-shield]: https://img.shields.io/github/downloads/bendikrb/ha-devtools/latest/total?style=flat
 [madewithlove-shield]: https://madewithlove.now.sh/no?heart=true&colorB=%233584e4
+[try-action-shield]: https://my.home-assistant.io/badges/developer_call_service.svg

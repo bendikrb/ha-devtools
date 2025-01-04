@@ -2,7 +2,8 @@
   "domain": "devtools",
   "name": "Developer tools",
   "version": "0.0.0",
-  "documentation": "https://github.com/bendikrb/ha_devtools",
+  "documentation": "https://github.com/bendikrb/ha-devtools",
+  "issue_tracker": "https://github.com/bendikrb/ha-devtools/issues",
   "requirements": [],
   "codeowners": [
     "@bendikrb"
