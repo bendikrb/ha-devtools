@@ -135,8 +135,11 @@ class HAConnection:
 
     async def send_and_receive(self, message: MessageType) -> MessageType:
         """Send JSON message and receives the response."""
-
-        return await self.send_and_receive_many(message).__anext__()
+        comm = self.send_and_receive_many(message)
+        response = await comm.__anext__()
+        if response["type"] == "result" and response["result"] is None:
+            response = await comm.__anext__()
+        return response
 
     async def send_and_receive_many(
         self, message: MessageType
