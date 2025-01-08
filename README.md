@@ -3,7 +3,7 @@
 --------
 
 [![GitHub Release][releases-shield]][releases]
-![Downloads][download-latest-shield]
+![Downloads][downloads-total-shield]
 [![License][license-shield]](LICENSE)
 [![hacs][hacsbadge]][hacs]
 [![Build Status][build-shield]][build]
@@ -75,6 +75,6 @@ data:
 [maintenance-shield]: https://img.shields.io/badge/maintainer-%40bendikrb-blue.svg?style=flat
 [releases-shield]: https://img.shields.io/github/release/bendikrb/ha-devtools.svg?style=flat
 [releases]: https://github.com/bendikrb/ha-devtools/releases
-[download-latest-shield]: https://img.shields.io/github/downloads/bendikrb/ha-devtools/latest/total?style=flat
+[downloads-total-shield]: https://img.shields.io/github/downloads/bendikrb/ha-devtools/total?style=flat
 [madewithlove-shield]: https://madewithlove.now.sh/no?heart=true&colorB=%233584e4
 [try-action-shield]: https://my.home-assistant.io/badges/developer_call_service.svg
