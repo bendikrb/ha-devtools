@@ -4,13 +4,13 @@
       "user": {
         "description": "Leave both fields blank to automatically generate a system user and long-lived token on this HA instance",
         "data": {
-          "token": "[%key:common::config_flow::data::access_token%]",
-          "url": "[%key:common::config_flow::data::url%]"
+          "token": "Access token",
+          "url": "Home Assistant URL"
         }
       }
     },
     "error": {
-      "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
+      "cannot_connect": "Failed to connect",
       "token_required_with_url": "Access token can not be empty if a custom Home Assistant URL is provided"
     }
   },
