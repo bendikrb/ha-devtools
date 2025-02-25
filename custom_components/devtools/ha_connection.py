@@ -137,7 +137,11 @@ class HAConnection:
         """Send JSON message and receives the response."""
         comm = self.send_and_receive_many(message)
         response = await comm.__anext__()
-        if response["type"] == "result" and response["result"] is None:
+        if (
+            response["type"] == "result"
+            and "result" in response
+            and response["result"] is None
+        ):
             response = await comm.__anext__()
         return response
 
