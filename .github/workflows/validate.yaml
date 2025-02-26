@@ -8,6 +8,16 @@ on:
   workflow_dispatch:
 
 jobs:
+  hassfest:
+    name: Hassfest
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⤵️  Check out code from GitHub
+        uses: actions/checkout@v4.2.2
+
+      - name: 🚀 Run hassfest validation
+        uses: home-assistant/actions/hassfest@master
+
   validate-hacs:
     runs-on: "ubuntu-latest"
     steps:
