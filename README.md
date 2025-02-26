@@ -1,4 +1,4 @@
-# DevTools Integration for Home Assistant
+# [![DevTools Integration for Home Assistant][logo]][repo]
 
 --------
 
@@ -33,7 +33,18 @@ Search for `Developer tools` in HACS and install it under the "Integrations" cat
 
 ## Configuration is done in the UI
 
-The configuration UI will guide you through adding the integration to Home Assistant, you just need a [long-lived access token](https://developers.home-assistant.io/docs/auth_api/#long-lived-access-token) which can be created in the "Security" section of your Home Assistant profile page.
+The configuration UI will guide you through adding the integration to Home Assistant. You have two options for authentication:
+
+### Option 1: Automatic (Recommended)
+If you want to use this integration to run against the same Home Assistant instance (i.e. `localhost`):
+1. Simply leave both fields "Access Token" empty
+2. The integration will automatically generate the necessary authentication tokens
+
+### Option 2: Manual
+If you prefer to use your own token (e.g. for using the integrating with a different Home Assistant instance):
+1. Create a [long-lived access token](https://developers.home-assistant.io/docs/auth_api/#long-lived-access-token) in the "Security" section of your Home Assistant profile page
+2. Enter this token in the "Access Token" field during setup
+3. If you want to use another Home Assistant Instance, enter its URL in the "Home Assistant URL" field
 
 
 ## Features
@@ -63,6 +74,7 @@ data:
 
 
 ***
+[repo]: https://github.com/bendikrb/ha-devtools
 [commits-shield]: https://img.shields.io/github/commit-activity/y/bendikrb/ha-devtools.svg?style=flat
 [commits]: https://github.com/bendikrb/ha-devtools/commits/main
 [hacs]: https://github.com/hacs/integration
