@@ -9,7 +9,8 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.network import get_url
 
-from .const import DOMAIN
+from . import _retrieve_access_token
+from .const import CONF_REFRESH_TOKEN_ID, DOMAIN
 from .exceptions import WebSocketAuthenticationError
 from .ha_connection import HAConnection
 
@@ -26,11 +27,13 @@ DEVTOOLS_USER_NAME = "Developer Tools"
 DEVTOOLS_CLIENT_NAME = "DevTools"
 
 
-async def validate_input(hass: HomeAssistant, data):
+async def validate_input(hass: HomeAssistant, data: dict[str, any]):
     """Validate if the given token allows us to connect."""
+    access_token = _retrieve_access_token(hass, data)
+
     async with HAConnection(
         url=data[CONF_URL],
-        token=data[CONF_TOKEN],
+        token=access_token,
         hass=hass,
         session=async_get_clientsession(hass),
     ) as sock:
@@ -55,11 +58,10 @@ class DevToolsConfigFlow(ConfigFlow, domain=DOMAIN):
         if not url:
             url = get_url(self.hass)
             user_input[CONF_URL] = url
-            _LOGGER.debug("Set URL: %s", user_input[CONF_URL])
         if not token:
-            token = await self._generate_access_token()
-            user_input[CONF_TOKEN] = token
-            _LOGGER.debug("Generated token: %s", user_input[CONF_TOKEN])
+            refresh_token = await self._generate_refresh_token()
+            user_input[CONF_REFRESH_TOKEN_ID] = refresh_token.id
+            _LOGGER.debug("Generated refresh token: %s", refresh_token)
 
         try:
             await validate_input(self.hass, user_input)
@@ -76,14 +78,14 @@ class DevToolsConfigFlow(ConfigFlow, domain=DOMAIN):
             errors=errors or {},
         )
 
-    async def _generate_access_token(self):
-        """Generate system user and long-lived token."""
+    async def _generate_refresh_token(self) -> auth.models.RefreshToken:
+        """Generate system user and refresh token."""
 
         user = await self.hass.auth.async_create_system_user(
             DEVTOOLS_USER_NAME, group_ids=[auth.const.GROUP_ID_ADMIN]
         )
-        refresh_token = await self.hass.auth.async_create_refresh_token(
+
+        return await self.hass.auth.async_create_refresh_token(
             user=user,
             client_name=DEVTOOLS_CLIENT_NAME,
         )
-        return self.hass.auth.async_create_access_token(refresh_token)
