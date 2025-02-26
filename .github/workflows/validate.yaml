@@ -8,8 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  hassfest:
-    name: Hassfest
+  validate-hassfest:
     runs-on: ubuntu-latest
     steps:
       - name: ⤵️  Check out code from GitHub
